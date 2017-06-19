@@ -1,0 +1,38 @@
+{% block body %}
+    <section>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h1 class="box-title">
+                            Liste des utilisateurs
+                        </h1>
+                    </div>
+                    <table class="table table-stripped table-hover">
+                        <tr>
+                            <th>#</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Pseudo</th>
+                            <th>Anniversaire</th>
+                        </tr>
+                        {% for user in users %}
+                            <tr>
+                                <td>
+                                    {{ loop.index }}
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-xs">
+                                        <a href="{{ path('user_view', {id: user.id}) }}"
+                                           class="btn btn-default"><i
+                                                    class="fa fa-eye"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

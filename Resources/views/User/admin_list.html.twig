@@ -1,0 +1,83 @@
+{% extends 'PlayCoreBundle::admin.html.twig' %}
+
+{% block body %}
+    <section>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h1 class="box-title">
+                            Liste des utilisateurs
+                        </h1>
+                    </div>
+                    <table class="table table-stripped table-hover">
+                        <tr>
+                            <th>#</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Pseudo</th>
+                            <th>Email</th>
+                            <th>Âge</th>
+                            <th>Crédit</th>
+                            <th>Dernière connexion</th>
+                            <th>Nombre d'achats</th>
+                            <th>Action</th>
+                        </tr>
+                        {% for user in users %}
+                            <tr>
+                                <td>
+                                    {{ loop.index }}
+                                </td>
+                                <td>
+                                    <a href="{{ path('user_edit', {id: user.id}) }}">{{ user.firstname }}</a>
+                                </td>
+                                <td>
+                                    {{ user.lastname }}
+                                </td>
+                                <td>
+                                    {{ user.username }}
+                                </td>
+                                <td>
+                                    {{ user.email }}
+                                </td>
+                                <td>
+                                    {{ user.birthday|age }}
+                                </td>
+                                <td>
+                                    {{ user.credit }}
+                                </td>
+                                <td>
+                                    {{ user.lastLogin|ago }}
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-xs">
+                                        <a href="{{ path('user_adminView', {id: user.id}) }}"
+                                           class="btn btn-default"><i
+                                                    class="fa fa-eye"></i></a>
+                                        <a href="{{ path('user_edit', {id: user.id}) }}"
+                                           class="btn btn-default"><i
+                                                    class="fa fa-pencil"></i></a>
+                                        {% if user.enabled == false %}
+                                            <a href="{{ path('user_enable', {id: user.id}) }}"
+                                                class="btn btn-default"><i
+                                                        class="fa fa-check"></i></a>
+                                        {% else %}
+                                            <a href="{{ path('user_enable', {id: user.id}) }}"
+                                                class="btn btn-default"><i
+                                                        class="fa fa-times"></i></a>
+                                        {% endif %}
+                                    </div>
+                                    <a href="{{ path('user_delete', {id: user.id}) }}"
+                                       class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

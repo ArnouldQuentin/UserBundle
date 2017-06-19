@@ -1,0 +1,12 @@
+services:
+    user.twig.age_extension:
+        class: UserBundle\Twig\AgeExtension
+        tags:
+            - { name: twig.extension }
+
+    user.username_not_taken_validator:
+            class: UserBundle\Validator\Constraints\UsernameNotTakenValidator
+            tags:
+                - { name: validator.constraint_validator }
+            arguments:
+                    - "@doctrine.orm.entity_manager"

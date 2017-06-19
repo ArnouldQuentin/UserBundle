@@ -1,0 +1,84 @@
+{% extends 'PlayCoreBundle::admin.html.twig' %}
+
+{% block title %}
+    {{ user }}
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading with-border">
+                <h2 class="panel-title">Informations générales</h2>
+            </div>
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ user.lastname }}</td>
+                </tr>
+                <tr>
+                    <th>Prénom</th>
+                    <td>{{ user.firstname }}</td>
+                </tr>
+                <tr>
+                    <th>Pseudo</th>
+                <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <th>Âge</th>
+                <td>{{ user.birthday|age }}</td>
+                </tr>
+                <tr>
+                    <th>Crédit</th>
+                <td>{{ user.credit }}</td>
+                </tr>
+                <tr>
+                    <th>Dernière connexion</th>
+                <td>{{ user.lastLogin|ago }}</td>
+                </tr>
+                <tr>
+                    <th>Nombre d'achats</th>
+                <td></td>
+                </tr>
+            </table>
+            <div class="panel-body">
+                <a href="{{ path('user_edit', {id: user.id}) }}" class="btn btn-default btn-block"><i class="fa fa-pencil"></i> Modifier</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading with-border">
+                <h2 class="panel-title">Informations</h2>
+            </div>
+            <div class="panel-body">
+                <p>Instruments<p>
+                    <ul>
+                        {% for userInstrument in user.userInstrument %}
+                            <li>{{ userInstrument.instrument.name }} - {{ userInstrument.experience|trans }}</li>
+                        {% else %}
+                            Aucun instrument spécifié pour l'instant!
+                        {% endfor %}
+                    </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading with-border">
+                <h2 class="panel-title">Statistiques</h2>
+            </div>
+            <div class="panel-body">
+                <ul>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

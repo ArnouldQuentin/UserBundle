@@ -1,0 +1,29 @@
+{% extends 'PlayCoreBundle::admin.html.twig' %}
+
+{% block body %}
+    <section>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h1 class="box-title">Edition d'un utilisateur</h1>
+                    </div>
+                    <div class="box-body">
+
+                        {{ form_start(form) }}
+                        {{ form_errors(form) }}
+                        {{ form_rest(form) }}
+
+                        <div class="form-group">
+                            <div class="col-sm-10 col-sm-offset-2">
+                                <button type="submit" class="btn-default btn- btn">Valider</button>
+                            </div>
+                        </div>
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
